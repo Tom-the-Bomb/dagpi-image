@@ -944,24 +944,24 @@ def bonk(byt: bytes) -> BytesIO:
     return buffer
 
 
-@executor
-def bomb(byt: bytes) -> BytesIO:
-    im = PILManip.pil_image(byt)
-    im = im.resize((512, 512))
-    frames = [im for _ in range(50)]
-    with Image.open("app/image/assets/bomb.gif") as bomb:
-
-        for frame in ImageSequence.Iterator(bomb):
-            frames.append(frame.resize((512, 512)))
-
-    buffer = BytesIO()
-    frames[0].save(buffer,
-                   format='gif',
-                   save_all=True,
-                   optimize=True,
-                   append_images=frames[1:],
-                   duration=10,
-                   loop=0
-                   )
-    buffer.seek(0)
-    return buffer
+#@executor
+#def bomb(byt: bytes) -> BytesIO:
+#    im = PILManip.pil_image(byt)
+#    im = im.resize((512, 512))
+#    frames = [im for _ in range(50)]
+#    with Image.open("app/image/assets/bomb.gif") as bomb:
+#
+#        for frame in ImageSequence.Iterator(bomb):
+#            frames.append(frame.resize((512, 512)))
+#
+#    buffer = BytesIO()
+#    frames[0].save(buffer,
+#                   format='gif',
+#                   save_all=True,
+#                   optimize=True,
+#                   append_images=frames[1:],
+#                   duration=10,
+#                   loop=0
+#                   )
+#    buffer.seek(0)
+#    return buffer
